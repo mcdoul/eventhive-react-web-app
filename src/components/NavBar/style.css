@@ -1,0 +1,113 @@
+.site-navbar {
+    margin-bottom: 0px;
+    /* z-index: 1999;  */
+    position: absolute;
+    left:0;
+    width: 100%;
+    top: 2rem; 
+}
+
+.site-navbar .container-fluid {
+    padding-left: 7rem;
+    padding-right: 7rem; 
+}
+
+@media (max-width: 1199.98px) {
+    .site-navbar .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px; 
+    } 
+}
+
+.site-navbar .site-logo {
+    position: absolute;
+    left: 5%; 
+}
+
+.site-navbar .site-logo a {
+    color: #fff;
+    font-size: 1.5rem;
+    letter-spacing: .2rem;
+    text-transform: uppercase; 
+}
+
+.site-navbar .site-logo a:hover {
+    text-decoration: none; 
+}
+
+.site-navbar .right-cta-menu {
+    width: 200px;
+    position: absolute;
+    right: 5%; 
+}
+
+@media (max-width: 767.98px) {
+    .site-navbar.right-cta-menu {
+        position: relative;
+        right: auto; 
+    }   
+}
+
+.site-navbar .site-navigation {
+    position: absolute;
+    left: 50% !important;
+    width: 500px;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 5; 
+}
+
+.site-navbar .site-navigation .site-menu {
+    margin-bottom: 0; 
+}
+
+.site-navbar .site-navigation .site-menu .active {
+    color: #fff;
+    display: inline-block;
+    padding: 5px 20px; 
+}
+
+.site-navbar .site-navigation .site-menu a {
+    text-decoration: none !important;
+    display: inline-block;
+    position: relative; 
+}
+
+.site-navbar .site-navigation .site-menu > li {
+    display: inline-block; 
+}
+
+.site-navbar .site-navigation .site-menu > li > a {
+    padding: 20px 20px !important;
+    color: rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    text-decoration: none !important; 
+}
+
+.site-navbar .site-navigation .site-menu > li > a:hover {
+    color: #fff; 
+}
+  
+/* .btn:after, .btn:before {
+    display: none; 
+}
+  
+.btn:hover, .btn:focus, .btn:active {
+    outline: none;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important; 
+}
+  
+.btn.btn-outline-white {
+    background: transparent;
+    border-width: 2px;
+    border-color: #fff;
+    color: #fff; 
+}
+
+.btn.btn-outline-white:hover {
+    background: #fff;
+    color: #000; 
+} */
+  

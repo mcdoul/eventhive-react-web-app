@@ -1,0 +1,28 @@
+.image-container {
+    /* width: auto; */
+    height: 380px;
+}
+  
+.image-container img {
+    width: auto;
+    height: 200px;
+    object-fit: cover;
+    background-size: cover;
+    /* bckground-position: center; */
+    background-repeat: no-repeat;
+}
+
+.card {
+    background-color: #00000029;
+    border-width: 2px;
+    border-color: #fff;
+    color: #fff; 
+}
+
+.card-title {
+    color: #fff;
+}
+
+.card-text {
+    color: #fff;
+}
