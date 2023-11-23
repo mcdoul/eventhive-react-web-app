@@ -1,4 +1,4 @@
-import courses from "./courses.json";
+import events from "./events.json";
 export default {
-  courses,
+  events,
 };

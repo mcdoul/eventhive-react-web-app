@@ -1,6 +1,6 @@
 import { React } from "react";
 import SearchForm from "../../components/SearchForm/SearchForm";
-import CourseList from "../../components/courses/CourseList";
+import EventList from "../../components/Events/EventList";
 
 function EventsList() {
   return (
@@ -10,7 +10,7 @@ function EventsList() {
       </div>
       <div>
         <h4 className="wd-fg-color-white">All Events List / Search Results / or separate</h4>
-        <CourseList />
+        <EventList />
       </div>
       
     </div>
