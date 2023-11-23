@@ -1,47 +1,28 @@
-import React, { useEffect, useState }  from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
 
-import {
-  addEvent,
-  deleteEvent,
-  updateEvent,
-  setEvent,
-  setEvents,
-} from "./EventsReducer";
-import { findAllEvents, createEvent, deleteEvent as deleteEventClient, updateEvent as updateEventClient } from "./client";
+import { setEvents } from "./EventsReducer";
 import "./style.css";
 
+import * as client from "./client";
+import EventItem from "./EventItem";
 
 function EventList() {
   const events = useSelector((state) => state.EventsReducer.events);
-  const event = useSelector((state) => state.EventsReducer.event);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  const fetchEvents = async () => {
+    try {
+      const events = await client.findAllEvents();
+      dispatch(setEvents(events));
+    } catch (error) {
+      console.error("Failed to fetch events:", error);
+    }
+  };
 
   useEffect(() => {
-    findAllEvents()
-      .then((events) => dispatch(setEvents(events)));
-  }, [dispatch]);
-
-  const handleAddEvent = () => {
-    createEvent(event).then((event) => {
-      dispatch(addEvent(event));
-    });
-  };
-  const handleDeleteEvent = (eventId) => {
-    deleteEventClient(eventId).then((status) => {
-      dispatch(deleteEvent(eventId));
-    });
-  };
-  const handleUpdateEvent = async () => {
-    const status = await updateEventClient(event);
-    dispatch(updateEvent(event));
-  };
-  const handleViewEvent = (eventId) => {
-    navigate(`/EventHive/events/${eventId}`);
-  };
+    fetchEvents();
+  }, []);
 
   return (
     <div>
@@ -56,18 +37,8 @@ function EventList() {
               />
               <div className="card-body">
 
-                <h5 className="card-title">
-                  <Link to={`/EventHive/events/${eventItem._id}`} className="wd-fg-color-white">
-                    {eventItem.number} {eventItem.name}
-                  </Link>
-                </h5>
-                <p className="card-text">
-                  {/* event ID: {eventItem._id}  */}
-                  Start from {eventItem.startDate} to {eventItem.endDate}
-                </p>
-                <div>
-                  <button className="btn btn-outline-white" onClick={() => handleViewEvent(eventItem._id)}> View {eventItem.name} </button>
-                </div>
+                <EventItem event={eventItem} />
+
               </div>
             </div>
           </div>

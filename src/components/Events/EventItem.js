@@ -1,24 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { deleteEvent, setEvent } from "./EventsReducer";
 import { Link } from "react-router-dom";
+import { setEvents } from "./EventsReducer";
+
+import * as client from "./client";
 
 function EventItem({ event }) {
   const dispatch = useDispatch();
   
+  const fetchEvents = async () => {
+    try {
+      const events = await client.findAllEvents();
+      dispatch(setEvents(events));
+    } catch (error) {
+      console.error("Failed to fetch events:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
   return (
     <div>
       <h5 className="card-title">
-        <Link to={`/EventHive/events/${event._id}`} className="wd-fg-color-white">
-          {event.number} {event.name}
-        </Link>
+        {event.location} {event.name}
       </h5>
       <p className="card-text">
-        {/* event ID: {event._id}  */}
+        {/* will fetch user data and change id to name  */}
+        Organizer: {event.organizer_id} 
+      </p>
+      <p className="card-text">
+        Attendance: {event.attendance_id.length}
+      </p>
+      <p className="card-text">
         Start from {event.startDate} to {event.endDate}
       </p>
       <div>
-      <button className="btn btn-outline-white" onClick={() => dispatch(deleteEvent(event._id))}> View {event.name} </button>
+        <Link to={`/EventHive/Events/${event._id}`}>
+        <button className="btn btn-outline-white"> View {event.name} </button>
+        </Link>
       </div>
     </div>
   );

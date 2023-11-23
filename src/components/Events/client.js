@@ -8,11 +8,9 @@ export const findEvent = async (eventId) => {
 };
 
 export const createEvent = async (event) => {
-    const response = await axios.post(
-        EVENTS_URL, event
-    );
-    return response.data;
-  };
+  const response = await axios.post(`${EVENTS_URL}`, event);
+  return response.data;
+};
 
 export const deleteEvent = async (eventId) => {
   const response = await axios
@@ -27,9 +25,6 @@ export const updateEvent = async (event) => {
 };
 
 export const findAllEvents = async () => {
-    const response = await axios.get(EVENTS_URL);
-    return response.data;
-  };
-
-
-  
+  const response = await axios.get(EVENTS_URL);
+  return response.data;
+};
