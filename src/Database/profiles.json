@@ -1,0 +1,9 @@
+[
+    {
+    "name" : "Julian Lee",
+    "description": "I'm a student",    
+    "email":"abc.com", 
+    "phone": "1234567890",
+    "address1": "1234 Main St, City, State",
+    "address2": "1234 Main St, City, State 2"}
+]
