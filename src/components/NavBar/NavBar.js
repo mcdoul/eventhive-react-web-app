@@ -7,7 +7,8 @@ import './style.css';
 import '../../lib/font-awesome/css/font-awesome.css';
 import '../../lib/bootstrap/bootstrap.min.css';
 
-function NavBar({ auth: { isAuthenticated, loading, user }, logout }) {
+// state
+function NavBar({ auth: { isAuthenticated, user }, logout }) {
 	const links = [
 		{ text: 'Home', path: '/' },
 		{ text: 'View All Events', path: '/EventHive/eventslist' },
@@ -44,6 +45,11 @@ function NavBar({ auth: { isAuthenticated, loading, user }, logout }) {
 					</nav>
 					{isAuthenticated ? (
 						<div className='right-cta-menu'>
+							{user && (
+								<p>
+									Welcome {user.name} {user.email}
+								</p>
+							)}
 							<Link
 								to='/EventHive'
 								onClick={logout}

@@ -1,7 +1,6 @@
 const initialState = {
 	token: localStorage.getItem('token'),
 	isAuthenticated: null,
-	// loading: true,
 	user: null,
 };
 
@@ -12,7 +11,6 @@ export default function (state = initialState, action) {
 		return {
 			...state,
 			isAuthenticated: true,
-			// loading: false,
 			user: payload,
 		};
 	} else if (type === 'Authenticated') {
@@ -21,7 +19,6 @@ export default function (state = initialState, action) {
 			...state,
 			...payload,
 			isAuthenticated: true,
-			// loading: false,
 		};
 	} else if (type === 'NotAuthenticated') {
 		localStorage.removeItem('token');
@@ -29,7 +26,6 @@ export default function (state = initialState, action) {
 			...state,
 			token: null,
 			isAuthenticated: false,
-			// loading: false,
 		};
 	} else {
 		return state;

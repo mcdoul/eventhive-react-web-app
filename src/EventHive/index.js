@@ -12,7 +12,6 @@ import Team from './Team';
 import EventsDetail from './EventsDetail';
 
 import { Provider } from 'react-redux';
-
 import { loadUser } from '../actions/auth';
 import store from './store';
 
