@@ -1,6 +1,6 @@
 .site-navbar {
     margin-bottom: 0px;
-    /* z-index: 1999;  */
+    z-index: 1000;
     position: absolute;
     left:0;
     width: 100%;
