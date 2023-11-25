@@ -120,3 +120,27 @@ div a{
     font-size:x-large;
     font-style:italic;
 }
+
+.result-events-container {
+    position: fixed;
+    top: 100px; 
+    left: 80px;
+    right: 80px;
+    bottom: 150px;
+    overflow-y:scroll; 
+    overflow-x:hidden;
+}
+
+
+.result-events-container::-webkit-scrollbar {
+    width: 8px; 
+}
+
+.result-events-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.result-events-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.4); 
+    border-radius: 20px;
+}

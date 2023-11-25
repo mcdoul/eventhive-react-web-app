@@ -1,6 +1,8 @@
 .image-container {
-    /* width: auto; */
-    height: 380px;
+    width: auto;
+    height: 430px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
   
 .image-container img {

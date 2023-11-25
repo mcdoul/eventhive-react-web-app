@@ -9,6 +9,7 @@ import SignUp from './Auth/SignUp';
 import EventsList from './EventsList';
 import Profile from './Profile';
 import Team from './Team';
+import EventsDetail from './EventsDetail';
 
 import { Provider } from 'react-redux';
 
@@ -19,10 +20,6 @@ import './style.css';
 import '../lib/font-awesome/css/font-awesome.css';
 import '../lib/bootstrap/bootstrap.min.css';
 import axios from 'axios';
-
-// if (localStorage.token) {
-// 	setAuthToken(localStorage.token);
-// }
 
 if (localStorage.token) {
 	axios.defaults.headers.common['x-auth-token'] = localStorage.token;
@@ -47,6 +44,7 @@ function EventHive() {
 					<Route path='/ourteam' element={<Team />} />
 					<Route path='/profile' element={<Profile />} />
 					<Route path='/eventslist' element={<EventsList />} />
+					<Route path='/events/:eventId/*' element={<EventsDetail />} />
 				</Routes>
 			</div>
 		</Provider>

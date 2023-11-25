@@ -1,13 +1,14 @@
 import React from "react";
 import SearchForm from "../../components/SearchForm/SearchForm";
-import CourseList from "../../components/courses/CourseList";
+import EventList from "../../components/Events/EventList";
+import "../style.css";
 
 function Home () {
     return (
         <div>
-            <div>
+            <div className="result-events-container">
                 <h4 className="wd-fg-color-white">Recommendations for anonymous users / Recent events created by the logged in user </h4>
-                <CourseList />
+                <EventList />
             </div>
             <div>
                 <SearchForm />
