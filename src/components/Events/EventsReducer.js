@@ -11,6 +11,8 @@ const initialState = {
     attendance_id: [],
     price: "",
     description: "",
+    comments: [],
+    registered: []
   },
 };
 

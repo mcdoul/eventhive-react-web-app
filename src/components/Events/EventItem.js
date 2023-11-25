@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { setEvents } from "./EventsReducer";
+import { Link, useNavigate } from "react-router-dom";
 
 import * as client from "./client";
+
+import {
+  deleteEvent,
+  setEvents,
+} from "./EventsReducer";
+import { deleteEvent as deleteEventClient} from "./client";
 
 function EventItem({ event }) {
   const dispatch = useDispatch();
@@ -21,6 +26,12 @@ function EventItem({ event }) {
     fetchEvents();
   }, []);
 
+  const handleDeleteEvent = (eventId) => {
+    deleteEventClient(eventId).then((status) => {
+      dispatch(deleteEvent(eventId));
+    });
+  };
+
   return (
     <div>
       <h5 className="card-title">
@@ -36,10 +47,17 @@ function EventItem({ event }) {
       <p className="card-text">
         Start from {event.startDate} to {event.endDate}
       </p>
-      <div>
+      <div className="d-flex justify-content-between">
         <Link to={`/EventHive/Events/${event._id}`}>
-        <button className="btn btn-outline-white"> View {event.name} </button>
+          <button className="btn btn-outline-white">View {event.name}</button>
         </Link>
+
+        <div>
+          <Link to={`/events/edit/${event._id}`}>
+            <button className="btn btn-outline-white me-2">Edit</button>
+          </Link>
+          <button className="btn btn-outline-white" onClick={() => handleDeleteEvent(event._id)}>Delete</button>
+        </div>
       </div>
     </div>
   );

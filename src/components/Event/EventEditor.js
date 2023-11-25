@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addEvent as addEventAction, updateEvent as updateEventAction, deleteCourse as deleteCourseAction, setEvents } from "./EventsReducer";
-import * as client from "./client";
+import { addEvent as addEventAction, updateEvent as updateEventAction, deleteEvent as deleteEventAction, setEvents } from "../Events/EventsReducer";
+import * as client from "../Events/client"
+
 
 function EventEditor() {
   const selectedEvent = useSelector((state) => state.eventReducer.event);
@@ -21,12 +22,12 @@ function EventEditor() {
     setEvent({ ...event, [e.target.name]: e.target.value });
   };
 
-  const deleteCourseHandler = async () => {
+  const deleteEventHandler = async () => {
     try {
-        await client.deleteCourse(course._id);
-        dispatch(deleteCourseAction(course._id));
+        await client.deleteEvent(event._id);
+        dispatch(deleteEventAction(event._id));
     } catch (error) {
-        console.error("Failed to delete course:", error);
+        console.error("Failed to delete Event:", error);
     }
   };
 
@@ -48,6 +49,17 @@ function EventEditor() {
       console.error("Failed to update event:", error);
     }
   };
+
+  // const handleUpdateEvent = async () => {
+  //   const status = await updateEventClient(event);
+  //   dispatch(updateEvent(event));
+  // };
+
+  // const handleAddEvent = () => {
+  //   createEvent(event).then((event) => {
+  //     dispatch(addEvent(event));
+  //   });
+  // };
 
   useEffect(() => {
     if (selectedEvent) {

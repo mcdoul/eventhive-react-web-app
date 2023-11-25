@@ -7,7 +7,8 @@ import SignUp from "./Auth/SignUp";
 import EventsList from "./EventsList";
 import Profile from "./Profile";
 import Team from "./Team";
-import EventsDetail from "./EventsDetail";
+import EventsDetail from "./EventDetail";
+import EventEditor from "./EventEditor";
 
 import store from "./store";
 import { Provider } from "react-redux";
@@ -29,6 +30,8 @@ function EventHive() {
           <Route path="/profile"   element={<Profile/>}/>
           <Route path="/eventslist"   element={<EventsList/>}/>
           <Route path="/events/:eventId/*" element={<EventsDetail />} />
+          <Route path="/events/new" element={<EventEditor/>} />
+          <Route path="/events/edit/:eventId" element={<EventEditor/>} />
         </Routes>
       </div>
     </Provider>
