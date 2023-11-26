@@ -49,7 +49,10 @@ function HomeEventList({ auth: { isAuthenticated, user }}) {
 
       {filteredEvents.length === 0 ? (
         <div className="center-container">
-          You haven't been involved in any envents on EventHive yet. Join or Create one Event on EventHive!
+          You haven't been involved in any envents yet
+          <br/>
+          Join or Create one Event on EVENTHIVE!
+          <br/>
           <img src = "/pics/party.jpeg"></img>
         </div>
       ) : (

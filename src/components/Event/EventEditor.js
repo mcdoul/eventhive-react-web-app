@@ -120,7 +120,10 @@ function EventEditor() {
           </>
         ) : (
           <>
-          <button className="float-end btn btn-outline-black" onClick={() => deleteEventHandler(event._id)}>Delete</button>
+          <Link to={`/EventHive`}>
+            <button className="float-end btn btn-outline-black"> Cancel </button>
+          </Link>
+          <button className="float-end btn btn-outline-black me-2" onClick={() => deleteEventHandler(event._id)}>Delete</button>
           <button className="float-end btn btn-outline-black me-2" onClick={updateEventHandler}> Update </button>
           </>
         )}
