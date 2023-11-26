@@ -28,7 +28,7 @@ function EventItem({ event }) {
       </h5>
       <p className="card-text">
         {/* will fetch user data and change id to name  */}
-        Organizer: {event.organizer_id} 
+        Organizer: {event.organizer_id} | Price: $ {event.price}
       </p>
       <p className="card-text">
         Attendance: {event.attendance_id.length}

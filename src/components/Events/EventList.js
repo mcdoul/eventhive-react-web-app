@@ -7,7 +7,7 @@ import "./style.css";
 import * as client from "./client";
 import EventItem from "./EventItem";
 
-function EventList() {
+function EventList({ searchQuery }) {
   const events = useSelector((state) => state.EventsReducer.events);
   const dispatch = useDispatch();
 
@@ -24,10 +24,17 @@ function EventList() {
     fetchEvents();
   }, []);
 
+  const filteredEvents = searchQuery
+    ? events.filter(event => 
+        event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        event.location.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+    : events;
+
   return (
     <div>
       <div className="row row-cols-1 row-cols-md-3 g-4 d-flex flex-row flex-wrap">
-        {events.map((eventItem, index) => (
+        {filteredEvents.map((eventItem, index) => (
           <div key={eventItem._id} className="col">
             <div className="card image-container">
               <img

@@ -45,16 +45,11 @@ function NavBar({ auth: { isAuthenticated, user }, logout }) {
 					</nav>
 					{isAuthenticated ? (
 						<div className='right-cta-menu'>
-							{/* {user && (
+							{user && (
 								<p>
 									Welcome {user.name} {user.email}
 								</p>
-							)} */}
-							<Link
-								to='/EventHive/profile'
-								className='btn btn-outline-white border-width-2 d-lg-inline-block me-2'>
-								Profile
-							</Link>
+							)}
 							<Link
 								to='/EventHive'
 								onClick={logout}
