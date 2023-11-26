@@ -1,13 +1,14 @@
 import { React } from "react";
 import SearchForm from "../../components/SearchForm/SearchForm";
-import EventList from "../../components/Events/EventList";
+import EventResults from "../../components/Events/EventResults";
 import "../style.css";
 
-function EventsList() {
+function SearchResult() {
   return (
     <div>
       <div className="result-events-container">
-        <EventList />
+        <h4 className="wd-fg-color-white">Search Results</h4>
+        <EventResults />
       </div>
       <div>
         <SearchForm />
@@ -15,4 +16,4 @@ function EventsList() {
     </div>
   );
 }
-export default EventsList;
+export default SearchResult;

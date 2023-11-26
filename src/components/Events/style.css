@@ -1,6 +1,6 @@
 .image-container {
     width: auto;
-    height: 430px;
+    height: auto;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -28,3 +28,27 @@
 .card-text {
     color: #fff;
 }
+
+.center-container {
+    text-align: center;
+    color: #fff;
+    font-size: 1.2rem;
+    letter-spacing: .2rem;
+}
+
+.center-container img {
+    height: 50vh;
+    width: auto;
+    max-width: 100%;
+    border-radius: 20px;
+    margin-top: 15px;
+    object-fit: cover;
+}
+  
+@media screen and (min-height: 900px) { 
+.center-container img {
+    height: 60vh;
+    width: auto;
+}
+}
+  

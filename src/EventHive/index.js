@@ -10,6 +10,8 @@ import EventsList from './EventsList';
 import Profile from './Profile';
 import Team from './Team';
 import EventsDetail from './EventsDetail';
+import SearchResult from './SearchResult';
+import EventEditor from "./EventEditor";
 
 import { Provider } from 'react-redux';
 import { loadUser } from '../actions/auth';
@@ -43,7 +45,10 @@ function EventHive() {
 					<Route path='/ourteam' element={<Team />} />
 					<Route path='/profile' element={<Profile />} />
 					<Route path='/eventslist' element={<EventsList />} />
+          			<Route path="/searchresult"   element={<SearchResult/>}/>
 					<Route path='/events/:eventId/*' element={<EventsDetail />} />
+					<Route path="/events/new" element={<EventEditor/>} />
+					<Route path="/events/edit/:eventId" element={<EventEditor/>} />
 				</Routes>
 			</div>
 		</Provider>

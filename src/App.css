@@ -82,6 +82,19 @@ a, a:hover {
   color: #000; 
 }
 
+.btn.btn-outline-black {
+  background: rgba(128, 128, 128, 0.8);
+  border-width: 2px;
+  color: white; 
+}
+
+.btn.btn-outline-black:hover {
+  background: rgba(128, 128, 128, 0.2);
+  color: black; 
+}
+
+
+
 .wd-fg-color-white { 
   color: white; 
 }

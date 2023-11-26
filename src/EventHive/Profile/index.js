@@ -76,8 +76,6 @@ function Profile ({ auth: { isAuthenticated, user }}) {
     );
 }
 
-// export default NavBar;
-
 Profile.propTypes = {
 	auth: PropTypes.object.isRequired,
 };

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -7,8 +7,8 @@ import './style.css';
 import '../../lib/font-awesome/css/font-awesome.css';
 import '../../lib/bootstrap/bootstrap.min.css';
 
-// state
-function NavBar({ auth: { isAuthenticated, user }, logout }) {
+
+function NavBar({ auth: { isAuthenticated }, logout }) {
 	const links = [
 		{ text: 'Home', path: '/' },
 		{ text: 'View All Events', path: '/EventHive/eventslist' },
@@ -38,31 +38,22 @@ function NavBar({ auth: { isAuthenticated, user }, logout }) {
 								</li>
 							))}
 						</ul>
-
-						{/* {!loading && (
-							<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
-						)} */}
 					</nav>
 					{isAuthenticated ? (
 						<div className='right-cta-menu'>
-							{/* {user && (
-								<p>
-									Welcome {user.name} {user.email}
-								</p>
-							)} */}
-							<Link
+              				<Link
 								to='/EventHive/profile'
 								className='btn btn-outline-white border-width-2 d-lg-inline-block me-2'>
-								Profile
+								View My Profile
 							</Link>
-							<Link
-								to='/EventHive'
+							<Link to="/EventHive/events/new" className="btn btn-outline-white me-2"> Create Event</Link>
+							<Link to='/EventHive'
 								onClick={logout}
-								className='btn btn-outline-white border-width-2 d-lg-inline-block me-2'>
+								className='btn btn-outline-white border-width-2 d-lg-inline-block'>
 								Logout
 							</Link>
 						</div>
-					) : (
+						) : (
 						<div className='right-cta-menu'>
 							<Link
 								to='/EventHive/signup'
@@ -76,26 +67,11 @@ function NavBar({ auth: { isAuthenticated, user }, logout }) {
 							</Link>
 						</div>
 					)}
-					;
-					{/* {<div className='right-cta-menu'>
-						<Link
-							to='/EventHive/signup'
-							className='btn btn-outline-white border-width-2 d-lg-inline-block me-2'>
-							Sign Up
-						</Link>
-						<Link
-							to='/EventHive/login'
-							className='btn btn-outline-white border-width-2 d-lg-inline-block'>
-							Log In
-						</Link>
-					</div>} */}
 				</div>
 			</div>
 		</div>
 	);
 }
-
-// export default NavBar;
 
 NavBar.propTypes = {
 	logout: PropTypes.func.isRequired,
