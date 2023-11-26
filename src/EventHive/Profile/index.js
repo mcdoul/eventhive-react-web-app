@@ -1,52 +1,32 @@
 import {React, useState, useEffect} from "react";
-import NavBar from "../../components/NavBar/NavBar";
 import style from "./style.css";
-import axios from "axios";
 import * as client from "./client";
-import { findProfileByEmail, updateProfile } from "./client";
-import { useSelector, useDispatch } from "react-redux";
-import { setProfile} from "./ProfileReducer";
-// import db from "../../Database";
+import {findProfileByEmail} from "./client";
+import { connect, useSelector, useDispatch} from "react-redux";
+import { Navigate } from 'react-router-dom';
+import {setProfile, updateProfile} from "./ProfileReducer";
+import PropTypes from 'prop-types';
+import { showAlert } from '../../utils/alertHelper';
 
-// todo
-// 1.get information from database
-// 2.implement edit function
-function Profile () {
-    const testEmail = "abc.com";
+function Profile ({ auth: { isAuthenticated, user }}) {
+    const testEmail = user.email;
+    // const testEmail = "abcde.com";
     const dispatch = useDispatch();
-    console.log("Profile");
+    const profile = useSelector((state) => state.ProfileReducer.profile);
 
-    // todo
-    // Get email information from login page/ state
+    useEffect(() => {
+        // Fetch data from the backend
+        findProfileByEmail(testEmail).then((profile) => {
+            dispatch(setProfile(profile))
+        });
+    }, [testEmail]);
 
-    // const profile = useSelector((state) => state.ProfileReducer.Profile);
-    const testProfile = findProfileByEmail(testEmail);
-    console.log('testProfile')
-    console.log(testProfile);
-    // useEffect(() => {
-    //     findProfileByEmail(testEmail)
-    //       .then((profile) => {
-    //         // Update the profile in the Redux store
-    //         dispatch(setProfile(profile));
-    //       })
-    //       .catch((error) => {
-    //         console.error("Error fetching profile:", error);
-    //       });
-    //   }, []);
     const handleUpdateProfile = async() => {
         const status = await client.updateProfile(profile);
         dispatch(updateProfile(profile));
+        showAlert('success', 'Success!', 'Profile Saved');
     };
 
-
-    const profile = {
-        name: "testName",
-        email: "testEmail",
-        phone: "testPhone",
-        address1: "testAddress1",
-        address2: "testAddress2",
-    };
-    
     return (
         <div className = "d-flex">
             
@@ -87,19 +67,7 @@ function Profile () {
                         <input type = "text" className="form-control" value = {profile.address2} onChange={(e) => dispatch(setProfile({...profile, address2: e.target.value}))}/>
                     </div>
                 </div>
-                {/* display private info */}
-                {/* need to hide when not logged in */}
-                {/* {privateInfo.map((link, index) => (
-                    <div className = "row">
-                        <div className = "col-4 text-start">
-                            {link.text}
-                        </div>
-                        <div className = "col-8 text-start p-1">
-                            <input type = "text" className="form-control" value = {link.value}/>
-                        </div>
-                    </div>
-                ))} */}
-                <button className="btn btn-danger border-width-2 float-end" onclick ={handleUpdateProfile}>Save</button>
+                <button className="btn btn-danger border-width-2 float-end" onClick ={handleUpdateProfile}>Save</button>
             </div>
             
         </div>
@@ -107,8 +75,6 @@ function Profile () {
         
     );
 }
-
-// export default NavBar;
 
 Profile.propTypes = {
 	auth: PropTypes.object.isRequired,
