@@ -1,11 +1,14 @@
-import { configureStore, applyMiddleware } from "@reduxjs/toolkit";
-import thunk from 'redux-thunk'; // Import redux-thunk middleware
-import EventsReducer from "../../components/Events/EventsReducer";
+import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
+
+import thunk from 'redux-thunk';
+import rootReducer from '../../reducers';
+
+const initialState = {};
 
 const store = configureStore({
-  reducer: {
-    EventsReducer
-  },
-}, applyMiddleware(thunk));
+	reducer: rootReducer,
+	preloadedState: initialState,
+	middleware: [thunk],
+});
 
 export default store;
