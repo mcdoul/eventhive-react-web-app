@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { setEvents } from "./EventsReducer";
-
 import * as client from "./client";
+
 
 function EventItem({ event }) {
   const dispatch = useDispatch();
@@ -38,8 +38,14 @@ function EventItem({ event }) {
       </p>
       <div>
         <Link to={`/EventHive/Events/${event._id}`}>
-        <button className="btn btn-outline-white"> View {event.name} </button>
+        <button className="btn btn-outline-white me-2 mb-2"> View {event.name} </button>
         </Link>
+
+        {/* if (orginizer_id == user_id): */}
+        <Link to={`/EventHive/events/edit/${event._id}`}>
+          <button className="btn btn-outline-white me-2 mb-2">Edit</button>
+        </Link>
+      
       </div>
     </div>
   );

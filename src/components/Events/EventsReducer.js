@@ -11,6 +11,8 @@ const initialState = {
     attendance_id: [],
     price: "",
     description: "",
+    comments: [],
+    registered: []
   },
 };
 
@@ -52,4 +54,3 @@ const eventsSlice = createSlice({
 
 export const { addEvent, deleteEvent, updateEvent, setEvent, setEvents } = eventsSlice.actions;
 export default eventsSlice.reducer;
-

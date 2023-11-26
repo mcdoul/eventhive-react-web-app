@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addEvent as addEventAction, updateEvent as updateEventAction, deleteCourse as deleteCourseAction, setEvents } from "./EventsReducer";
-import * as client from "./client";
+import { Link, useLocation } from "react-router-dom";
+import { addEvent as addEventAction, updateEvent as updateEventAction, deleteEvent as deleteEventAction, setEvents } from "../Events/EventsReducer";
+import * as client from "../Events/client"
+
 
 function EventEditor() {
-  const selectedEvent = useSelector((state) => state.eventReducer.event);
+  const { pathname } = useLocation();
+  const parts = pathname.split('/');
+  const screen = parts[parts.length - 1];
+
+  const selectedEvent = useSelector((state) => state.EventsReducer.event);
   const [event, setEvent] = useState({ 
     name: "",
-    number: "", 
+    location: "", 
     startDate: "", 
     endDate: "",   
     organizer_id: "",
@@ -21,12 +27,12 @@ function EventEditor() {
     setEvent({ ...event, [e.target.name]: e.target.value });
   };
 
-  const deleteCourseHandler = async () => {
+  const deleteEventHandler = async () => {
     try {
-        await client.deleteCourse(course._id);
-        dispatch(deleteCourseAction(course._id));
+        await client.deleteEvent(event._id);
+        dispatch(deleteEventAction(event._id));
     } catch (error) {
-        console.error("Failed to delete course:", error);
+        console.error("Failed to delete Event:", error);
     }
   };
 
@@ -80,10 +86,10 @@ function EventEditor() {
           />
         </p>
         <p>
-          Event Number: <input
-            name="number"
+          Event Location: <input
+            name="location"
             className="float-end form-control"
-            value={event.number}
+            value={event.location}
             onChange={handleInputChange}
           />
         </p>
@@ -104,8 +110,21 @@ function EventEditor() {
           />
         </p>
         <p> Add more...</p>
-        <button className="float-end btn btn-primary mt-2" onClick={updateEventHandler}> Update </button>
-        <button className="float-end btn btn-success mt-2 me-2" onClick={addEventHandler}> Add </button>
+        
+        {screen === "new" ? (
+          <>
+          <Link to={`/EventHive/eventslist`}>
+            <button className="float-end btn btn-outline-black"> Cancel </button>
+          </Link>
+          <button className="float-end btn btn-outline-black me-2" onClick={addEventHandler}> Add </button>
+          </>
+        ) : (
+          <>
+          <button className="float-end btn btn-outline-black" onClick={() => deleteEventHandler(event._id)}>Delete</button>
+          <button className="float-end btn btn-outline-black me-2" onClick={updateEventHandler}> Update </button>
+          </>
+        )}
+
       </li>
     </ul>
   );

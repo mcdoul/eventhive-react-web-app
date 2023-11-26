@@ -7,7 +7,6 @@ function EventsList() {
   return (
     <div>
       <div className="result-events-container">
-        <h4 className="wd-fg-color-white">All Events List / Search Results / or separate</h4>
         <EventList />
       </div>
       <div>
