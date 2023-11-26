@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setEvent } from "../Events/EventsReducer";
-import * as client from "../Events/client";
+import * as client from "../Events/client"
+
+import "./style.css";
 
 const EventDetail = () => {
   const { eventId } = useParams();
@@ -29,17 +31,61 @@ const EventDetail = () => {
     return <div>Loading event details...</div>;
   }
 
+
   return (
-    <div className="event-detail-container wd-fg-color-white" style={{ maxWidth: '800px', margin: 'auto', padding: '20px', backgroundColor: '#f4f4f4', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-      <img src={eventData.image || 'default-image-url.jpg'} alt={eventData.name} style={{ width: '100%', height: 'auto', borderRadius: '4px' }} />
-      <h1 style={{ color: '#333', marginTop: '20px' }}>{eventData.name}</h1>
-      <p><strong>Date:</strong> {eventData.startDate} to {eventData.endDate}</p>
-      <p><strong>Location:</strong> {eventData.location}</p>
-      <p><strong>Description:</strong> {eventData.description}</p>
-      <p><strong>Price:</strong> $ {eventData.price}</p>
-      <p><strong>Organizer:</strong> {eventData.organizer_id}</p>
-      <p><strong>Attendance:</strong> {eventData.attendance_id.length}</p>
-      <a href={eventData.registrationLink} style={{ display: 'inline-block', padding: '10px 15px', backgroundColor: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '4px' }}>Register / More Info</a>
+    <div>
+      <div className="event-detail-container ">
+        <div className="left-section">
+          <a href={eventData.registrationLink} className="btn-pink">Register / Get Ticket</a>
+          <div className="info-item">
+            <span className="info-title">Date</span>
+            <p className="info-content">{eventData.startDate} to {eventData.endDate}</p>
+          </div>
+          <div className="info-item">
+            <span className="info-title">Location</span>
+            <p className="info-content"> 📍 {eventData.location}</p>
+          </div>
+          <div className="info-item">
+            <span className="info-title">Price</span>
+            <p className="info-content">${eventData.price}</p>
+          </div>
+          <div className="info-item">
+            <span className="info-title">Organizer</span>
+            <p className="info-content">{eventData.organizer_id}</p>
+          </div>
+          <div className="info-item">
+            <span className="info-title">Attendance</span>
+            <p className="info-content">{eventData.attendance_id.length}</p>
+          </div>
+        </div>
+        <div className="right-section flex-wrap">
+          <img src={`/pics/1.png`} alt={eventData.name} className="event-image" />
+          <h1 className="event-title">{eventData.name}</h1>
+          <h5 className="event-date">{eventData.startDate} ~ {eventData.endDate}</h5>
+          <div className="info-item description">
+            <p className="info-title">Description</p>
+            <p className="info-content">{eventData.description}</p>
+          </div>
+          <div className="info-item comments">
+            <p className="info-title">Comments</p>
+            <div className="info-content">
+              {eventData.comments && eventData.comments.map(comment => (
+                <div key={comment.userId}>
+                  <div className='user-id'><strong>- User ID: {comment.userId}</strong></div>
+                  <p className='comment'>{comment.content}</p>
+                </div>
+              ))}
+            </div>
+            <form className='info-content'>
+              <div class="form-group">
+                <label for="userComment" className='user-id'>Your Comment</label>
+                <textarea class="form-control comment-box" id="userComment" rows="4" placeholder="Write your comment here..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-small btn-pink">Submit Comment</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
