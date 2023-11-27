@@ -8,7 +8,7 @@ import '../../lib/font-awesome/css/font-awesome.css';
 import '../../lib/bootstrap/bootstrap.min.css';
 
 
-function NavBar({ auth: { isAuthenticated }, logout }) {
+function NavBar({ auth: { isAuthenticated, user }, logout }) {
 	const links = [
 		{ text: 'Home', path: '/' },
 		{ text: 'View All Events', path: '/EventHive/eventslist' },
@@ -45,6 +45,7 @@ function NavBar({ auth: { isAuthenticated }, logout }) {
 								to='/EventHive/profile'
 								className='btn btn-outline-white border-width-2 d-lg-inline-block me-2'>
 								View My Profile
+
 							</Link>
 							<Link to="/EventHive/events/new" className="btn btn-outline-white me-2"> Create Event</Link>
 							<Link to='/EventHive'
