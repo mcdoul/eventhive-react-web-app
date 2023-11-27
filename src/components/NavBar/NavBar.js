@@ -8,7 +8,7 @@ import '../../lib/font-awesome/css/font-awesome.css';
 import '../../lib/bootstrap/bootstrap.min.css';
 
 
-function NavBar({ auth: { isAuthenticated, user }, logout }) {
+function NavBar({ auth: { isAuthenticated }, logout }) {
 	const links = [
 		{ text: 'Home', path: '/' },
 		{ text: 'View All Events', path: '/EventHive/eventslist' },
