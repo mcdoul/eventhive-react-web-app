@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { setEvents } from "./EventsReducer";
 import "./style.css";
 
 import * as client from "./client";
 import EventItem from "./EventItem";
+import EventEditor from "../Event/EventEditor";
 
 function EventList({ searchQuery }) {
   const events = useSelector((state) => state.EventsReducer.events);
@@ -33,6 +35,7 @@ function EventList({ searchQuery }) {
 
   return (
     <div>
+      <Link to="/EventHive/events/new" className="btn btn-outline-white"> + Create Event</Link>
       <div className="row row-cols-1 row-cols-md-3 g-4 d-flex flex-row flex-wrap">
         {filteredEvents.map((eventItem, index) => (
           <div key={eventItem._id} className="col">

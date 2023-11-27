@@ -41,9 +41,8 @@ function EventItem({ event }) {
         <button className="btn btn-outline-white me-2 mb-2"> View {event.name} </button>
         </Link>
 
-        {/* if (orginizer_id == user_id): */}
         <Link to={`/EventHive/events/edit/${event._id}`}>
-          <button className="btn btn-outline-white me-2 mb-2">Edit</button>
+          <button className="btn btn-outline-white me-2">Edit</button>
         </Link>
       
       </div>
