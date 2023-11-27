@@ -18,9 +18,9 @@ export const deleteEvent = async (eventId) => {
   return response.data;
 };
 
-export const updateEvent = async (event) => {
+export const updateEvent = async (eventId, event) => {
   const response = await axios.
-    put(`${EVENTS_URL}/${event._id}`, event);
+    put(`${EVENTS_URL}/edit/${eventId}`, event);
   return response.data;
 };
 
