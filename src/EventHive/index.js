@@ -43,7 +43,7 @@ function EventHive() {
 					<Route path='/login' element={<Login />} />
 					<Route path='/signup' element={<SignUp />} />
 					<Route path='/ourteam' element={<Team />} />
-					<Route path='/profile' element={<Profile />} />
+					<Route path='/profile/:profileId?' element={<Profile />} />
 					<Route path='/eventslist' element={<EventsList />} />
           			<Route path="/searchresult"   element={<SearchResult/>}/>
 					<Route path='/events/:eventId/*' element={<EventsDetail />} />
