@@ -14,5 +14,24 @@ export const findProfileByEmail = async (email) => {
   }catch(error){
     console.error("Error:",error.message);
   }
-    
+};
+
+export const follow = async (profilePair) => {
+  try{
+    const response = await axios.put(`${PROFILE_URL}/${profilePair.followingEmail}/follow`, profilePair);
+    return response.data;
+  }catch(error){
+    console.error("Error:",error.message);
+  }
+  
+};
+
+export const unfollow = async (profilePair) => {
+  try{
+    const response = await axios.put(`${PROFILE_URL}/${profilePair.followingEmail}/unfollow`, profilePair);
+    return response.data;
+  }catch(error){
+    console.error("Error:",error.message);
+  }
+  
 };
