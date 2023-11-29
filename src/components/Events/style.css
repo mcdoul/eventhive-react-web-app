@@ -10,14 +10,14 @@
     height: 200px;
     object-fit: cover;
     background-size: cover;
-    /* bckground-position: center; */
     background-repeat: no-repeat;
 }
 
 .card {
     background-color: #00000029;
     border-width: 2px;
-    border-color: #fff;
+    border-width: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #fff; 
 }
 
@@ -46,9 +46,21 @@
 }
   
 @media screen and (min-height: 900px) { 
-.center-container img {
-    height: 60vh;
-    width: auto;
+    .center-container img {
+        height: 60vh;
+        width: auto;
+    }
 }
+
+.api-search-container {
+    background-color: #00000029;
+    border-radius: 8px;
+    border-width: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: flex-start;
+    overflow: auto;
+    margin-right: 10px;
 }
-  
+
+

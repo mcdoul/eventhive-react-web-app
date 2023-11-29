@@ -6,7 +6,7 @@ import "../style.css";
 function Home () {
     return (
         <div>
-            <div className="result-events-container">
+            <div className="events-list-container">
                 <HomeEventList />
             </div>
             <div>

@@ -28,3 +28,5 @@ export const findAllEvents = async () => {
   const response = await axios.get(EVENTS_URL);
   return response.data;
 };
+
+export const API_KEY = process.env.REACT_APP_GOOGLE_SEARCH_API_KEY;

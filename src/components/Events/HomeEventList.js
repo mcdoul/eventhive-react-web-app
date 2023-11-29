@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from "react-redux";
 import { setEvents } from "./EventsReducer";
-import { useLocation } from "react-router-dom";
 import "./style.css";
 
 import * as client from "./client";
@@ -12,9 +11,6 @@ import EventItem from "./EventItem";
 function HomeEventList({ auth: { isAuthenticated, user }}) {
   const events = useSelector((state) => state.EventsReducer.events);
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
-  const parts = pathname.split('/');
-  const screen = parts[parts.length - 1];
 
   const fetchEvents = async () => {
     try {
@@ -35,8 +31,8 @@ function HomeEventList({ auth: { isAuthenticated, user }}) {
           event.organizer_id === user.id || 
           event.attendance_id.includes(user.id)
       ) : ([...events] 
-        .sort((a, b) => b.attendance_id.length - a.attendance_id.length) 
-        .slice(0, 3) 
+        .sort((a, b) => new Date(b.startDate) - new Date(a.startDate)) // Sort by most recent start date
+        .slice(0, 6) 
   );
 
   return (
@@ -44,7 +40,7 @@ function HomeEventList({ auth: { isAuthenticated, user }}) {
       {isAuthenticated && user ? (
           <div className="center-container mb-2">Welcome {user.name} !</div>
       ) : (
-        <div className="center-container mb-2">Popular Events</div>
+        <div className="center-container mb-2">Welcome to EVENTHIVE! Latest events for you!</div>
       )}
 
       {filteredEvents.length === 0 ? (
