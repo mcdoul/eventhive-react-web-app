@@ -15,6 +15,7 @@ function HomeEventList({ auth: { isAuthenticated, user }}) {
   const { pathname } = useLocation();
   const parts = pathname.split('/');
   const screen = parts[parts.length - 1];
+  const defaultImgUrl = "http://res.cloudinary.com/dif777yh9/image/upload/v1701296949/cld-sample-4";
 
   const fetchEvents = async () => {
     try {
@@ -32,8 +33,8 @@ function HomeEventList({ auth: { isAuthenticated, user }}) {
   
   const filteredEvents = (isAuthenticated && user) 
     ? events.filter(event => 
-          event.organizer_id === user.id || 
-          event.attendance_id.includes(user.id)
+          event.organizer_id === user.email || 
+          event.attendance_id.includes(user.email)
       ) : ([...events] 
         .sort((a, b) => b.attendance_id.length - a.attendance_id.length) 
         .slice(0, 3) 
@@ -61,9 +62,9 @@ function HomeEventList({ auth: { isAuthenticated, user }}) {
             <div key={eventItem._id} className="col">
               <div className="card image-container">
                 <img
-                  src={`/pics/${index + 1}.png`}
+                  src={eventItem.imageUrl || defaultImgUrl} 
                   className="card-img-top"
-                  alt="..."
+                  alt={eventItem.name}
                 />
                 <div className="card-body">
                   <EventItem event={eventItem} />
