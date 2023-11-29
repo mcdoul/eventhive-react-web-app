@@ -6,7 +6,7 @@ import "../style.css";
 function EventsList() {
   return (
     <div>
-      <div className="result-events-container">
+      <div className="events-list-container">
         <EventList />
       </div>
       <div>

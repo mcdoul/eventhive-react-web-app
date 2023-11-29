@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import EventList from './EventList';
+import EventSearch from './EventSearch';
 
 function EventResults() {
   const location = useLocation(); 
@@ -13,7 +13,7 @@ function EventResults() {
 
   return (
     <div>
-        <EventList searchQuery={searchQuery} />
+      <EventSearch searchQuery={searchQuery} />
     </div>
   );
 }

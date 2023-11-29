@@ -1,124 +1,30 @@
-/* html, body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-}
-
-body * {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-div a{
-    text-decoration: none;
-}
-
-.wd-fg-color-black { 
-    color: black; 
-}
-
-.wd-fg-color-white { 
-    color: white; 
-}
-
-.wd-fg-color-blue { 
-    color: #7070ff; 
-}
-.wd-fg-color-red { 
-    color: rgb(181, 40, 40);
-}
-
-.wd-fg-color-green { 
-    color: green; 
-}
-
-.wd-bg-color-yellow {
-    background-color: #ffff07;
-}
-
-.wd-bg-color-blue {
-    background-color: #7070ff;
-}
-
-.wd-bg-color-red {
-    background-color: rgb(181, 40, 40);
-}
-
-.wd-bg-color-green {
-    background-color: green;
-}
-
-.wd-bg-color-black {
-    background-color: black;
-}
-
-.wd-flex-row-container {
-    display: flex;
-    flex-direction: row;
-}
-
-.wd-flex-grow-1 {
-    flex-grow: 1;
-}
-
-#navibar {
-    height: 100%;
-}
-
-.borderless tr td {
-    border: none !important;
-}
-
-#right-side-module {
-    max-width: 240px;
-}
-
-.wd-fixed-top-margin {
-    margin-top: 100px;
-}
-
-.wd-fixed-left-margin {
-    margin-left: 90px;
-    padding: 90px;
-}
-
-.wd-relative-left {
-    position: relative; 
-    margin-left: 80px !important;
-}
-
-.wd-breadbar {
-    padding-left: 90px;
-}
-
-.wd-move-right {
-    position: relative;
-    left: 320px !important;
-    top: 100px !important;
-    margin-right: 20px;
-}
-
-@media screen and (max-width: 768px) {
-    .wd-relative-left {
-        position: relative; 
-        margin-left: 0px !important;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .wd-move-right {
-        position: relative; 
-        left: 30px !important;
-        top: 30px !important;
-    }
-} */
-
 .team-text {
     color: white;
     font-size:x-large;
     font-style:italic;
+}
+
+.events-list-container {
+    position: fixed;
+    top: 100px; 
+    left: 80px;
+    right: 80px;
+    bottom: 150px;
+    overflow-y:scroll; 
+    overflow-x:hidden;
+}
+
+.events-list-container::-webkit-scrollbar {
+    width: 8px; 
+}
+
+.events-list-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.events-list-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.4); 
+    border-radius: 20px;
 }
 
 .result-events-container {
@@ -130,7 +36,6 @@ div a{
     overflow-y:scroll; 
     overflow-x:hidden;
 }
-
 
 .result-events-container::-webkit-scrollbar {
     width: 8px; 
