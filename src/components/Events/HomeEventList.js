@@ -11,6 +11,7 @@ import EventItem from "./EventItem";
 function HomeEventList({ auth: { isAuthenticated, user }}) {
   const events = useSelector((state) => state.EventsReducer.events);
   const dispatch = useDispatch();
+  const defaultImgUrl = "http://res.cloudinary.com/dif777yh9/image/upload/v1701296949/cld-sample-4";
 
   const fetchEvents = async () => {
     try {
@@ -36,7 +37,8 @@ function HomeEventList({ auth: { isAuthenticated, user }}) {
 
   const RegisteredEvents = (isAuthenticated && user) 
     ? events.filter(event => 
-          event.attendance_id.includes(user.id)
+          event.organizer_id === user.email || 
+          event.attendance_id.includes(user.email)
       ) : ([...events] 
         .sort((a, b) => new Date(b.startDate) - new Date(a.startDate)) // Sort by most recent start date
         .slice(0, 6) 
@@ -74,9 +76,9 @@ function HomeEventList({ auth: { isAuthenticated, user }}) {
                     <div key={eventItem._id} className="col">
                       <div className="card image-container">
                         <img
-                          src={`/pics/${index + 1}.png`}
+                          src={eventItem.imageUrl || defaultImgUrl} 
                           className="card-img-top"
-                          alt="Event Image"
+                          alt={eventItem.name}
                         />
                         <div className="card-body">
                           <EventItem event={eventItem} />
@@ -101,9 +103,9 @@ function HomeEventList({ auth: { isAuthenticated, user }}) {
                     <div key={eventItem._id} className="col"> 
                       <div className="card image-container">
                         <img
-                          src={`/pics/${index + 1}.png`}
+                          src={eventItem.imageUrl || defaultImgUrl} 
                           className="card-img-top"
-                          alt="Event Image"
+                          alt={eventItem.name}
                         />
                         <div className="card-body">
                           <EventItem event={eventItem} />

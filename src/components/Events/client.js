@@ -28,5 +28,17 @@ export const findAllEvents = async () => {
   const response = await axios.get(EVENTS_URL);
   return response.data;
 };
-
 export const API_KEY = process.env.REACT_APP_GOOGLE_SEARCH_API_KEY;
+
+export const registerUserForEvent = async (eventId, userEmail) => {
+  const response = await axios.post(`${EVENTS_URL}/${eventId}/register`, { userEmail: userEmail });
+  return response.data;
+};
+
+export const addCommentToEvent = async (eventId, userEmail, commentText) => {
+  const response = await axios.post(`${EVENTS_URL}/${eventId}/comments`, {
+    userEmail: userEmail,
+    content: commentText
+  });
+  return response.data;
+}
