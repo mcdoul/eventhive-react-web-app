@@ -26,9 +26,16 @@ function HomeEventList({ auth: { isAuthenticated, user }}) {
   }, []);
 
   
-  const filteredEvents = (isAuthenticated && user) 
+  const OrginizedEvents = (isAuthenticated && user) 
     ? events.filter(event => 
-          event.organizer_id === user.id || 
+          event.organizer_id === user.id
+      ) : ([...events] 
+        .sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
+        .slice(0, 6) 
+  );
+
+  const RegisteredEvents = (isAuthenticated && user) 
+    ? events.filter(event => 
           event.attendance_id.includes(user.id)
       ) : ([...events] 
         .sort((a, b) => new Date(b.startDate) - new Date(a.startDate)) // Sort by most recent start date
@@ -43,7 +50,7 @@ function HomeEventList({ auth: { isAuthenticated, user }}) {
         <div className="center-container mb-2">Welcome to EVENTHIVE! Latest events for you!</div>
       )}
 
-      {filteredEvents.length === 0 ? (
+      {OrginizedEvents.length === 0 && RegisteredEvents.length === 0 ? (
         <div className="center-container">
           You haven't been involved in any envents yet
           <br/>
@@ -52,21 +59,62 @@ function HomeEventList({ auth: { isAuthenticated, user }}) {
           <img src = "/pics/party.jpeg"></img>
         </div>
       ) : (
-        <div className="row row-cols-1 row-cols-md-3 g-4 d-flex flex-row flex-wrap">
-          {filteredEvents.map((eventItem, index) => (
-            <div key={eventItem._id} className="col">
-              <div className="card image-container">
-                <img
-                  src={`/pics/${index + 1}.png`}
-                  className="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body">
-                  <EventItem event={eventItem} />
+        <div className='row'>
+          <div className='col'>
+            
+            <div className="row row-cols-1 d-flex flex-row flex-wrap">
+              {OrginizedEvents.length === 0 ? (
+                <div className="col">
+                  <h4 className="wd-fg-color-white">You haven't created any events yet.</h4>
                 </div>
-              </div>
+              ) : (
+                <>
+                  <h4 className="wd-fg-color-white ms-2">Your Events</h4>
+                  {OrginizedEvents.map((eventItem, index) => (
+                    <div key={eventItem._id} className="col">
+                      <div className="card image-container">
+                        <img
+                          src={`/pics/${index + 1}.png`}
+                          className="card-img-top"
+                          alt="Event Image"
+                        />
+                        <div className="card-body">
+                          <EventItem event={eventItem} />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
-          ))}
+          </div>
+          <div className='col'>
+            <div className="row row-cols-1 d-flex flex-row flex-wrap">
+              {RegisteredEvents.length === 0 ? (
+                <div className="col">
+                  <h4 className="wd-fg-color-white">You haven't registed any events yet.</h4>
+                </div>
+              ) : (
+                <>
+                  <h4 className="wd-fg-color-white ms-2">Registed Events</h4>
+                  {RegisteredEvents.map((eventItem, index) => (
+                    <div key={eventItem._id} className="col"> 
+                      <div className="card image-container">
+                        <img
+                          src={`/pics/${index + 1}.png`}
+                          className="card-img-top"
+                          alt="Event Image"
+                        />
+                        <div className="card-body">
+                          <EventItem event={eventItem} />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>
