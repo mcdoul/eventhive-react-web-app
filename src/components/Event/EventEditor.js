@@ -203,7 +203,7 @@ function EventEditor({auth: { isAuthenticated, user }}) {
               <button type="submit" className="btn btn-pink" onChange={handleSubmit}>Submit Event</button>
               <div>
                 <Link to={`/EventHive`}>
-                  <button className="btn btn-outline-black me-2" onClick={() => handleDeleteEvent(event._id)}>Delete</button>
+                  {/* <button className="btn btn-outline-black me-2" onClick={() => handleDeleteEvent(event._id)}>Delete</button> */}
                   <button className="btn btn-outline-black">Cancel</button>
                 </Link>
               </div>
