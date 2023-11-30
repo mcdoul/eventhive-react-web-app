@@ -7,7 +7,7 @@
   
 .image-container img {
     width: auto;
-    height: 200px;
+    height: 250px;
     object-fit: cover;
     background-size: cover;
     background-repeat: no-repeat;
@@ -43,6 +43,11 @@
     border-radius: 20px;
     margin-top: 15px;
     object-fit: cover;
+}
+
+.btn-create-event{
+    margin-bottom: 20px;
+    margin-left: 10px;
 }
   
 @media screen and (min-height: 900px) { 

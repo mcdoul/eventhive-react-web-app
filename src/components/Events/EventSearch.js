@@ -79,22 +79,23 @@ function EventSearch({ searchQuery }) {
               <h4 className="wd-fg-color-white">There is no event found</h4>
             </div>
           ) : (
-            filteredEvents.map((eventItem, index) => (
-              
-              <div key={eventItem._id} className="col">
-                <h4 className="wd-fg-color-white ms-2">Related Events</h4>
-                <div className="card image-container">
-                  <img
-                    src={`/pics/${index + 1}.png`}
-                    className="card-img-top"
-                    alt="Event Image"
-                  />
-                  <div className="card-body">
-                    <EventItem event={eventItem} />
+            <>
+              <h4 className="wd-fg-color-white ms-2">Related Events</h4>
+              {filteredEvents.map((eventItem, index) => (
+                <div key={eventItem._id} className="col">
+                  <div className="card image-container mb-4">
+                    <img
+                      src={`/pics/${index + 1}.png`}
+                      className="card-img-top"
+                      alt="Event Image"
+                    />
+                    <div className="card-body">
+                      <EventItem event={eventItem} />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
+              ))}
+            </>
           )}
         </div>
       </div>
