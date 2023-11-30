@@ -12,6 +12,7 @@ import EventItem from "./EventItem";
 function EventSearch({ searchQuery }) {
   const events = useSelector((state) => state.EventsReducer.events);
   const dispatch = useDispatch();
+  const defaultImgUrl = "http://res.cloudinary.com/dif777yh9/image/upload/v1701296949/cld-sample-4";
 
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -76,18 +77,18 @@ function EventSearch({ searchQuery }) {
         <div className="row row-cols-1 d-flex flex-row flex-wrap">
           {filteredEvents.length === 0 ? (
             <div className="col">
-              <h4 className="wd-fg-color-white">There is no event found</h4>
+              <h4 className="space-letter">There is no event found</h4>
             </div>
           ) : (
             <>
-              <h4 className="wd-fg-color-white ms-2">Related Events</h4>
-              {filteredEvents.map((eventItem, index) => (
+              <h4 className="space-letter ms-2">Related Events</h4>
+              {filteredEvents.map((eventItem) => (
                 <div key={eventItem._id} className="col">
                   <div className="card image-container mb-4">
                     <img
-                      src={`/pics/${index + 1}.png`}
+                      src={eventItem.imageUrl || defaultImgUrl} 
                       className="card-img-top"
-                      alt="Event Image"
+                      alt={eventItem.name}
                     />
                     <div className="card-body">
                       <EventItem event={eventItem} />
@@ -100,11 +101,11 @@ function EventSearch({ searchQuery }) {
         </div>
       </div>
       <div className='col'>
-      <h4 className="wd-fg-color-white">More Info Form Google</h4>
+      <h4 className="space-letter">More Info Form Google</h4>
         <div className='card api-search-container'>
           {results.map((item, index) => (
             <div key={index}>
-              <h4 className='ms-2 wd-fg-color-white'>{item.title}</h4>
+              <h5 className='ms-2 wd-fg-color-white'>{item.title}</h5>
               <p className='ms-2 wd-fg-color-white'>{item.snippet}</p>
               <Link className='ms-2 btn btn-outline-white' to={item.link} target="_blank" rel="noopener noreferrer">Read more</Link>
               <hr/>
