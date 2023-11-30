@@ -6,6 +6,7 @@ import NavBar from '../components/NavBar/NavBar';
 import Home from './Home';
 import Login from './Auth/LogIn';
 import SignUp from './Auth/SignUp';
+import ResetPassword from './Auth/ResetPassword'
 import EventsList from './EventsList';
 import Profile from './Profile';
 import Team from './Team';
@@ -42,6 +43,7 @@ function EventHive() {
 					<Route path='/' element={<Home />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/signup' element={<SignUp />} />
+					<Route path='/resetpassword' element={<ResetPassword />} />
 					<Route path='/ourteam' element={<Team />} />
 					<Route path='/profile/:profileId?' element={<Profile />} />
 					<Route path='/eventslist' element={<EventsList />} />
