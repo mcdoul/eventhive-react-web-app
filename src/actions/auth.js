@@ -3,10 +3,11 @@ import axios from '../config/axiosConfig';
 import { showAlert } from '../utils/alertHelper';
 
 export const loadUser = () => async (dispatch) => {
-	if (localStorage.token) {
-		axios.defaults.headers.common['x-auth-token'] = localStorage.token;
+
+	if (localStorage.apiKey) {
+		axios.defaults.headers.common['x-api-key'] = localStorage.apiKey;
 	} else {
-		delete axios.defaults.headers.common['x-auth-token'];
+		delete axios.defaults.headers.common['x-api-key'];
 	}
 
 	try {

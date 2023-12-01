@@ -1,21 +1,9 @@
 import React, { Fragment, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { login } from '../../../actions/auth';
-
-
+import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../../config/axiosConfig';
 import { showAlert } from '../../../utils/alertHelper';
 
-
-
-
-
-
-
-
-const ResetPassword = ({ login, isAuthenticated }) => {
+const ResetPassword = () => {
     const navigate = useNavigate();
 
 	const [formData, setFormData] = useState({
@@ -39,9 +27,6 @@ const ResetPassword = ({ login, isAuthenticated }) => {
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		// login(email, password);
-		// resetPassword(email, validationCode, password, password2);
-
         if (password !== password2) {
 			showAlert('error', 'Oops...', 'Passwords do not match!');
 			return;
@@ -74,9 +59,6 @@ const ResetPassword = ({ login, isAuthenticated }) => {
 	};
 
     const onSendValidationCode = async () => {
-		// Add your logic to send the validation code
-		// For example, you can make an API call or trigger a function to send the code
-
         const config = {
             headers: {
                 'Content-Type': 'application/json',
