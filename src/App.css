@@ -96,3 +96,9 @@ a, a:hover {
 .wd-fg-color-white { 
   color: white; 
 }
+
+.space-letter {
+  color: #fff;
+  font-size: 1.2rem;
+  letter-spacing: .2rem;
+}

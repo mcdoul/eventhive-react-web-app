@@ -22,6 +22,7 @@ function Profile ({ auth: { isAuthenticated, user }}) {
     const profile = useSelector((state) => state.ProfileReducer.profile);
     const [followingUsers, setFollowingUsers] = useState([]);
     const [followedUsers, setFollowedUsers] = useState([]);
+    const [registeredEvent, setRegisteredEvent] = useState([]);
     const [isfollowing, setIsFollowing] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     
@@ -43,8 +44,11 @@ function Profile ({ auth: { isAuthenticated, user }}) {
                     setFollowingUsers(profileData.following);
                     setIsFollowing(profileData.followers.some((usr) => usr.email === user.email));
                 }
-                if (profileData.followers) {
+                if (profileData.followers && user) {
                     setFollowedUsers(profileData.followers);
+                }
+                if  (profileData.registeredEvent && user) {
+                    setRegisteredEvent(profileData.registeredEvent);
                 }
             }
             else{
@@ -99,14 +103,11 @@ function Profile ({ auth: { isAuthenticated, user }}) {
 
     return (
         <div className = "d-flex">
-            <div className = {`profile-container ${isLoading ? "":"invisible-profile" }`}>
-                Loading...
-            </div>
-            <div className = {`profile-container ${isLoading ? "invisible-profile" : ""}`}>
+            
+            <div className = {`profile-container }`}>
             
                 <h1>{profile.name}</h1>
                 
-
                 <div className = "row align-items-center m-0 ">
                     <div className = "col-4 text-start">
                         Email:
@@ -139,21 +140,39 @@ function Profile ({ auth: { isAuthenticated, user }}) {
                         <input type = "text" className="form-control" value = {profile.address2} onChange={(e) => dispatch(setProfile({...profile, address2: e.target.value}))}/>
                     </div>
                 </div>
-                {/* {profile.name} is following {followingUser} */}
+                <div className = {"row align-items-center m-0 px-0"}>
+                    <div className = "col-12 text-end p-0">
+                        <button className={"btn btn-danger border-width-2 float-end " + privateProfile}  onClick ={handleUpdateProfile}>Save</button>
+
+                    </div>
+                </div>
+                                {/* {profile.name} is following {followingUser} */}
+                {followingUsers.length == 0 && (
+                    <div className = "my-3">
+                        <h3>{profile.name} is not following anyone</h3>
+                        
+                    </div>
+                )}
                 {followingUsers.length > 0 && (
-                    <div>
-                        <h2>{profile.name} is following:</h2>
+                    <div >
+                        <h3>{profile.name} is following:</h3>
                         
                         {followingUsers.map((user, index) => (
-                            <Link to={`/EventHive/profile/${user.email}`}>{user.name}</Link>
+                            <Link to={`/EventHive/profile/${user.email}`}>{user.name + " "}</Link>
                         
                         ))}
                         
                     </div>
                 )}
+                {followedUsers.length == 0 && (
+                    <div className = "my-3">
+                        <h3>{profile.name} is not followed by anyone</h3>
+                        
+                    </div>
+                )}
                 {followedUsers.length > 0 && (
-                    <div>
-                        <h2>Followed Users:</h2>
+                    <div className = "my-3">
+                        <h3>{profile.name} is followed by:</h3>
                         
                         {followedUsers.map((user, index) => (
                             <Link to={`/EventHive/profile/${user.email}`}>{user.name}</Link>
@@ -161,9 +180,24 @@ function Profile ({ auth: { isAuthenticated, user }}) {
                         
                     </div>
                 )}
-                {isfollowing}
+
+                {registeredEvent.length == 0 && (
+                    <div className = "my-3">
+                        <h3>{profile.name} hasn't registered for any event</h3>      
+                    </div>
+                )}
+
+                {registeredEvent.length > 0 && (
+                    <div className = "my-3">
+                        <h3>Registered Events:</h3>
+                        {registeredEvent.map((event, index) => (
+                            <Link to={`/EventHive/Events/${event.eventId}`}>{event.eventTitle}</Link>
+                        ))}
+                        
+                    </div>
+                )}
                 
-                <button className={"btn btn-outline-white border-width-2 float-end " + privateProfile}  onClick ={handleUpdateProfile}>Save</button>
+                
                 <button className={`btn btn-primary border-width-2 float-end ${isfollowing ? "invisible-profile" : publicProfile}`} onClick = {handleFollow}>Follow</button>
                 <button className={`btn btn-outline-black border-width-2 float-end ${isfollowing ?  publicProfile: "invisible-profile"}`} onClick = {handleUnFollow}>UnFollow</button>
             </div>
