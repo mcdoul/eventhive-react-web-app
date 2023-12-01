@@ -6,6 +6,7 @@ import NavBar from '../components/NavBar/NavBar';
 import Home from './Home';
 import Login from './Auth/LogIn';
 import SignUp from './Auth/SignUp';
+import ResetPassword from './Auth/ResetPassword'
 import EventsList from './EventsList';
 import Profile from './Profile';
 import Team from './Team';
@@ -22,10 +23,10 @@ import '../lib/font-awesome/css/font-awesome.css';
 import '../lib/bootstrap/bootstrap.min.css';
 import axios from 'axios';
 
-if (localStorage.token) {
-	axios.defaults.headers.common['x-auth-token'] = localStorage.token;
+if (localStorage.apiKey) {
+	axios.defaults.headers.common['x-api-key'] = localStorage.apiKey;
 } else {
-	delete axios.defaults.headers.common['x-auth-token'];
+	delete axios.defaults.headers.common['x-api-key'];
 }
 
 function EventHive() {
@@ -42,6 +43,7 @@ function EventHive() {
 					<Route path='/' element={<Home />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/signup' element={<SignUp />} />
+					<Route path='/resetpassword' element={<ResetPassword />} />
 					<Route path='/ourteam' element={<Team />} />
 					<Route path='/profile/:profileId?' element={<Profile />} />
 					<Route path='/eventslist' element={<EventsList />} />

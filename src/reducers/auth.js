@@ -1,5 +1,5 @@
 const initialState = {
-	token: localStorage.getItem('token'),
+	apiKey: localStorage.getItem('apiKey'),
 	isAuthenticated: null,
 	user: null,
 };
@@ -14,17 +14,17 @@ export default function (state = initialState, action) {
 			user: payload,
 		};
 	} else if (type === 'Authenticated') {
-		localStorage.setItem('token', payload.token);
+		localStorage.setItem('apiKey', payload.apiKey);
 		return {
 			...state,
 			...payload,
 			isAuthenticated: true,
 		};
 	} else if (type === 'NotAuthenticated') {
-		localStorage.removeItem('token');
+		localStorage.removeItem('apiKey');
 		return {
 			...state,
-			token: null,
+			apiKey: null,
 			isAuthenticated: false,
 		};
 	} else {

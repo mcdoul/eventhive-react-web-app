@@ -8,18 +8,23 @@ const Login = ({ login, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
+		isAdministrator: false, // New field for the Administrator checkbox
 	});
 
-	const { email, password } = formData;
+	const { email, password, isAdministrator } = formData;
 
 	const onEmailChange = (e) =>
 		setFormData({ ...formData, email: e.target.value });
 	const onPasswordChange = (e) =>
 		setFormData({ ...formData, password: e.target.value });
 
+	const onCheckboxChange = (e) =>
+		setFormData({ ...formData, isAdministrator: e.target.checked });
+
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		login(email, password);
+		// login(email, password);
+		login(email, password, isAdministrator);
 	};
 
 	if (isAuthenticated) {
@@ -58,6 +63,19 @@ const Login = ({ login, isAuthenticated }) => {
 								/>
 							</div>
 
+							<div className='mb-3 form-check'>
+								<input
+									type='checkbox'
+									className='form-check-input'
+									id='adminCheckbox'
+									checked={isAdministrator}
+									onChange={(e) => onCheckboxChange(e)}
+								/>
+								<label className='form-check-label' htmlFor='adminCheckbox'>
+									Are you an Administrator?
+								</label>
+							</div>
+
 							<div className='mb-3 text-center'>
 								<button
 									type='submit'
@@ -67,14 +85,23 @@ const Login = ({ login, isAuthenticated }) => {
 							</div>
 						</form>
 
-						<h4 className='mt-5 text-center text-white'>
+						<h5 className='mt-5 text-center text-white'>
 							Don't have an account?{'   '}
 							<Link
 								to='/EventHive/signup'
 								className='btn btn-outline-white border-width-2 d-lg-inline-block me-2'>
 								Click here to Sign Up
 							</Link>
-						</h4>
+						</h5>
+
+						<h5 className='mt-5 text-center text-white'>
+							Forget Password?{'   '}
+							<Link
+								to='/EventHive/resetpassword'
+								className='btn btn-outline-white border-width-2 d-lg-inline-block me-2'>
+								Click here to Reset
+							</Link>
+						</h5>
 					</div>
 				</div>
 			</div>
