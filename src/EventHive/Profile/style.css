@@ -1,7 +1,11 @@
 .profile-container{
-    text-align: center;
-    left: 50%;
-    width: 500px;
+    width: 30vw;
+    height: 75vh;
+    background-color: rgba(244, 244, 244, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    padding: 20px;
 }
 .invisible-profile{
     display: none ;

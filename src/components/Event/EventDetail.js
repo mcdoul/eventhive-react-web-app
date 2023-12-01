@@ -36,7 +36,7 @@ const EventDetail = ({auth: { isAuthenticated, user }}) => {
   const handleRegister = async () => {
     if (!isRegistered) {
       try {
-        await client.registerUserForEvent(eventData._id, user.email);
+        await client.registerUserForEvent(eventData._id, eventData.name, user.email);
         setIsRegistered(true);
       } catch (error) {
         console.error("Registration failed:", error);
