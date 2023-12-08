@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 // import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
-import { register } from '../../../actions/auth';
+import { register } from '../client';
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import { showAlert } from '../../../utils/alertHelper'; // Adjust the path based on your project structure
