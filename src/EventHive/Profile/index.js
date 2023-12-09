@@ -104,7 +104,7 @@ function Profile ({ auth: { isAuthenticated, user }}) {
     return (
         <div className = "d-flex">
             
-            <div className = {`profile-container }`}>
+            <div className = "profile-container">
             
                 <h1>{profile.name}</h1>
                 
