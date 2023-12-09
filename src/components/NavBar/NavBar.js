@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { logout } from '../../actions/auth';
+import { logout } from '../../EventHive/Auth/client';
 import './style.css';
 import '../../lib/font-awesome/css/font-awesome.css';
 import '../../lib/bootstrap/bootstrap.min.css';
