@@ -102,12 +102,20 @@ function Profile ({ auth: { isAuthenticated, user }}) {
     );
 
     return (
-        <div className = "d-flex">
+        <div className = "content-container d-flex flex-wrap justify-content-center content-margin">
             
-            <div className = {`profile-container }`}>
-            
-                <h1>{profile.name}</h1>
+            <div className = "profile-container m-3">
                 
+                <div className = "row align-items-center m-0 ">
+                    <div className = "col-9 text-start fs-1">
+                        {profile.name}
+                    </div>
+                    <div className = "col-3 text-start fs-4">
+                    <button className={`btn btn-primary border-width-2 float-end ${isfollowing ? "invisible-profile" : publicProfile}`} onClick = {handleFollow}>Follow</button>
+                        <button className={`btn btn-outline-black border-width-2 float-end ${isfollowing ?  publicProfile: "invisible-profile"}`} onClick = {handleUnFollow}>UnFollow</button>
+
+                        </div>
+                </div>
                 <div className = "row align-items-center m-0 ">
                     <div className = "col-4 text-start">
                         Email:
@@ -146,60 +154,88 @@ function Profile ({ auth: { isAuthenticated, user }}) {
 
                     </div>
                 </div>
-                                {/* {profile.name} is following {followingUser} */}
-                {followingUsers.length == 0 && (
-                    <div className = "my-3">
-                        <h3>{profile.name} is not following anyone</h3>
-                        
+            </div>
+            <div className = "profile-container m-3 ">
+                <div className = "row align-items-center">
+                    <div className = "text-secondary fs-4 col-6 ">
+                        Followers:
                     </div>
-                )}
-                {followingUsers.length > 0 && (
-                    <div >
-                        <h3>{profile.name} is following:</h3>
-                        
-                        {followingUsers.map((user, index) => (
-                            <Link to={`/EventHive/profile/${user.email}`}>{user.name + " "}</Link>
-                        
-                        ))}
-                        
+                    <div className = "text-secondary fs-4 col-6 ">
+                        Following:
                     </div>
-                )}
-                {followedUsers.length == 0 && (
-                    <div className = "my-3">
-                        <h3>{profile.name} is not followed by anyone</h3>
-                        
+                </div>
+                <div className = "row">
+                    <div className = "col-6">
+                        <h2>{followedUsers.length}</h2>
                     </div>
-                )}
-                {followedUsers.length > 0 && (
-                    <div className = "my-3">
-                        <h3>{profile.name} is followed by:</h3>
-                        
-                        {followedUsers.map((user, index) => (
-                            <Link to={`/EventHive/profile/${user.email}`}>{user.name}</Link>
-                        ))}
-                        
+                    <div className = "col-6">
+                        <h2>{followingUsers.length}</h2>
                     </div>
-                )}
-
-                {registeredEvent.length == 0 && (
-                    <div className = "my-3">
-                        <h3>{profile.name} hasn't registered for any event</h3>      
+                </div>
+                <div className = "row">
+                    <div className = "text-secondary fs-4 col-12 ">
+                        Registered events:
                     </div>
-                )}
-
-                {registeredEvent.length > 0 && (
-                    <div className = "my-3">
-                        <h3>Registered Events:</h3>
-                        {registeredEvent.map((event, index) => (
-                            <Link to={`/EventHive/Events/${event.eventId}`}>{event.eventTitle}</Link>
-                        ))}
-                        
+                </div>
+                <div className = "row">
+                    <div className = "col-6">
+                        <h2>{registeredEvent.length}</h2>
                     </div>
-                )}
+                </div>
+                <div className = "row">
+                    <div className = "text-secondary fs-4 col-12 ">
+                        {followingUsers.length > 0 && (
+                            <div >
+                                {profile.name} is following:
+                                <ul className = "ul-profile">
+                                    {followingUsers.map((user, index) => (
+                                        <li >
+                                            <Link className = "userId" to={`/EventHive/profile/${user.email}`}>{user.name}</Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                                
+                            </div>
+                        )}
+                    </div>
+                </div>
+                <div className = "row">
+                    <div className = "text-secondary fs-4 col-12 ">
+                        {followedUsers.length > 0 && (
+                            <div>
+                                {profile.name} is followed by:
+                                
+                                <ul className = "ul-profile">
+                                    {followedUsers.map((user, index) => (
+                                        <li>
+                                            <Link className = "userId" to={`/EventHive/profile/${user.email}`}>{user.name}</Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                                
+                                
+                            </div>
+                        )}
+                    </div>
+                </div>
+                <div className = "row">
+                    <div className = "text-secondary fs-4 col-12 ">
+                        {registeredEvent.length > 0 && (
+                            <div className = "my-2">
+                                {profile.name} is registered for:
+                                <ul className = "ul-profile">
+                                    {registeredEvent.map((event, index) => (
+                                        <li>
+                                            <Link className = "eventId" to={`/EventHive/Events/${event.eventId}`}>{event.eventTitle}</Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                                
+                            </div>
+                        )}
+                    </div>
+                </div>
                 
-                
-                <button className={`btn btn-primary border-width-2 float-end ${isfollowing ? "invisible-profile" : publicProfile}`} onClick = {handleFollow}>Follow</button>
-                <button className={`btn btn-outline-black border-width-2 float-end ${isfollowing ?  publicProfile: "invisible-profile"}`} onClick = {handleUnFollow}>UnFollow</button>
             </div>
             
         </div>
