@@ -8,7 +8,7 @@ const Login = ({ login, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
-		isAdministrator: false, // New field for the Administrator checkbox
+		isAdministrator: false,
 	});
 
 	const { email, password, isAdministrator } = formData;
@@ -23,12 +23,10 @@ const Login = ({ login, isAuthenticated }) => {
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		// login(email, password);
 		login(email, password, isAdministrator);
 	};
 
 	if (isAuthenticated) {
-		// return <Navigate to='/dashboard' />;
 		return <Navigate to='/EventHive' />;
 	}
 

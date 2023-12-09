@@ -29,14 +29,7 @@ const SignUp = ({ register, isAuthenticated }) => {
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		if (password !== password2) {
-			// Swal.fire({
-			// 	icon: 'error',
-			// 	title: 'Oops...',
-			// 	text: 'Passwords do not match!',
-			// });
-
 			showAlert('error', 'Oops...', 'Passwords do not match!');
-
 			return;
 		}
 
@@ -44,7 +37,6 @@ const SignUp = ({ register, isAuthenticated }) => {
 	};
 
 	if (isAuthenticated) {
-		// return <Navigate to='/dashboard' />;
 		return <Navigate to='/EventHive' />;
 	}
 

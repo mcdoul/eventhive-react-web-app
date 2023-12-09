@@ -11,7 +11,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     userLoaded: (state, action) => {
-        console.log("enter userLoaded reducer!!!!!")
       return {
         ...state,
         isAuthenticated: true,
