@@ -1,14 +1,35 @@
 .profile-container{
-    width: 30vw;
-    max-height: 80vh;
-    min-height: 80vh;
+    width: 450px;
+    min-width: 350px;
     background-color: rgba(244, 244, 244, 0.9);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: auto;
     padding: 20px;
-    margin-top: 100px;
 }
 .invisible-profile{
     display: none ;
+}
+.content-container{
+    position: fixed;
+    top: 100px;
+    left: 80px;
+    right: 80px;
+    bottom: 150px;
+}
+
+.ul-profile{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.userId{
+    font-weight: 500;
+    font-size: 1em;
+    color: #8e4929;
+}
+.eventId{
+    font-weight: 500;
+    font-size: 1em;
+    color: #8e4929;
 }
