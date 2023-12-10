@@ -44,6 +44,18 @@ const EventDetail = ({auth: { isAuthenticated, user }}) => {
     }
   };
 
+  const handleUnregister = async () => {
+    if (isRegistered) {
+      try {
+        await client.unregisterUserFromEvent(eventData._id, user.email);
+        setIsRegistered(false);
+      } catch (error) {
+        console.error("Unregistration failed:", error);
+      }
+    }
+  };
+  
+
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if(isAuthenticated){
@@ -105,8 +117,8 @@ const EventDetail = ({auth: { isAuthenticated, user }}) => {
                 </Link>
               </div>
             ) : (
-              <button onClick={handleRegister} className="btn btn-pink" disabled={isRegistered} >
-                {isRegistered ? 'Registered' : 'Register / Get Ticket'}
+              <button onClick={isRegistered ? handleUnregister : handleRegister} className={isRegistered ? "btn btn-outline-black" : "btn btn-pink"}>
+                {isRegistered ? 'Unregister' : 'Register / Get Ticket'}
               </button>
             )
           )}

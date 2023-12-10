@@ -35,6 +35,11 @@ export const registerUserForEvent = async (eventId, eventTitle, userEmail) => {
   return response.data;
 };
 
+export const unregisterUserFromEvent = async (eventId, userEmail) => {
+  const response = await axios.post(`${EVENTS_URL}/${eventId}/unregister`, { userEmail });
+  return response.data;
+};
+
 export const addCommentToEvent = async (eventId, userEmail, commentText) => {
   const response = await axios.post(`${EVENTS_URL}/${eventId}/comments`, {
     userEmail: userEmail,

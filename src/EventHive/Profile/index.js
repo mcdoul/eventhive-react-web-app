@@ -108,7 +108,7 @@ function Profile ({ auth: { isAuthenticated, user }}) {
 
                 
                 <div className = "row align-items-center m-0 ">
-                    <div className = "col-9 text-start fs-1">
+                    <div className = "col-9 text-start fs-1 user-name">
                         {profile.name}
                     </div>
                     <div className = "col-3 text-start fs-4">
@@ -151,7 +151,7 @@ function Profile ({ auth: { isAuthenticated, user }}) {
                 </div>
                 <div className = {"row align-items-center m-0 px-0"}>
                     <div className = "col-12 text-end p-0">
-                        <button className={"btn btn-danger border-width-2 float-end " + privateProfile}  onClick ={handleUpdateProfile}>Save</button>
+                        <button className={"btn btn-pink border-width-2 float-end " + privateProfile}  onClick ={handleUpdateProfile}>Save</button>
 
                     </div>
                 </div>
@@ -159,10 +159,10 @@ function Profile ({ auth: { isAuthenticated, user }}) {
             <div className = "profile-container m-3 ">
                 <div className = "row align-items-center">
                     <div className = "text-secondary fs-4 col-6 ">
-                        Followers:
+                        Followers 
                     </div>
                     <div className = "text-secondary fs-4 col-6 ">
-                        Following:
+                        Following 
                     </div>
                 </div>
                 <div className = "row">
@@ -175,7 +175,7 @@ function Profile ({ auth: { isAuthenticated, user }}) {
                 </div>
                 <div className = "row">
                     <div className = "text-secondary fs-4 col-12 ">
-                        Registered events:
+                        Registered events 
                     </div>
                 </div>
                 <div className = "row">
@@ -187,7 +187,7 @@ function Profile ({ auth: { isAuthenticated, user }}) {
                     <div className = "text-secondary fs-4 col-12 ">
                         {followingUsers.length > 0 && (
                             <div >
-                                {profile.name} is following:
+                                {profile.name} is following
                                 <ul className = "ul-profile">
                                     {followingUsers.map((user, index) => (
                                         <li >
@@ -223,7 +223,7 @@ function Profile ({ auth: { isAuthenticated, user }}) {
                     <div className = "text-secondary fs-4 col-12 ">
                         {registeredEvent.length > 0 && (
                             <div className = "my-2">
-                                {profile.name} is registered for:
+                                {profile.name} is registered for
                                 <ul className = "ul-profile">
                                     {registeredEvent.map((event, index) => (
                                         <li>

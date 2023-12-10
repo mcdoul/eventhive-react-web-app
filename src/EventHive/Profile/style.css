@@ -26,10 +26,26 @@
 .userId{
     font-weight: 500;
     font-size: 1em;
-    color: #8e4929;
+    color: #D29FA1;
 }
 .eventId{
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1em;
-    color: #8e4929;
+    color: #E9AB94;
 }
+
+.btn-pink {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #D29FA1; 
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-self: flex-start;
+    }
+
+/* .user-name{
+    color:#AE8B9F;
+} */
