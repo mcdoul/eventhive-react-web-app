@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from '../../../config/axiosConfig';
 import { showAlert } from '../../../utils/alertHelper';
+import { resetPassword, sendValidationCode } from '../client';
 
 const ResetPassword = () => {
     const navigate = useNavigate();
@@ -31,64 +31,12 @@ const ResetPassword = () => {
 			showAlert('error', 'Oops...', 'Passwords do not match!');
 			return;
 		}
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-    
-        const body = JSON.stringify({email, validationCode, password});
-
-        try {
-            const res = await axios.post('/users/reset-password', body, config);
-            showAlert('success', 'Success!', 'Reset Successfully, Jump into Login Page');
-            navigate('/EventHive/login');
-
-        } catch (err) {
-            const errors = err.response.data.errors;
-    
-            if (errors) {
-                showAlert(
-                    'error',
-                    'Oops...',
-                    errors.map((error) => error.msg).join('<br/>')
-                );
-            }
-        }
+		resetPassword(email, validationCode, password, navigate);
 	};
 
     const onSendValidationCode = async () => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-    
-        const body = JSON.stringify({email});
-
-        try {
-            const res = await axios.post('/users/forgot-password', body, config);
-            showAlert('success', 'Success!', `Validation code sent to ${email}`);
-        } catch (err) {
-            const errors = err.response.data.errors;
-    
-            if (errors) {
-                showAlert(
-                    'error',
-                    'Oops...',
-                    errors.map((error) => error.msg).join('<br/>')
-                );
-            }
-        }
+		sendValidationCode(email);
 	};
-
-
-
-	// if (isAuthenticated) {
-	// 	// return <Navigate to='/dashboard' />;
-	// 	return <Navigate to='/EventHive' />;
-	// }
 
 	return (
 		<Fragment>
@@ -185,14 +133,5 @@ const ResetPassword = () => {
 		</Fragment>
 	);
 };
-
-// Login.propTypes = {
-// 	login: PropTypes.func.isRequired,
-// 	isAuthenticated: PropTypes.bool,
-// };
-
-// const mapStateToProps = (state) => ({
-// 	isAuthenticated: state.auth.isAuthenticated,
-// });
 
 export default ResetPassword;

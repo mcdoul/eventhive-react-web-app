@@ -15,7 +15,7 @@ import SearchResult from './SearchResult';
 import EventEditor from "./EventEditor";
 
 import { Provider } from 'react-redux';
-import { loadUser } from '../actions/auth';
+import { loadUser } from './Auth/client';
 import store from './store';
 
 import './style.css';

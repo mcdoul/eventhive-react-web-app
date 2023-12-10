@@ -105,6 +105,7 @@ function Profile ({ auth: { isAuthenticated, user }}) {
         <div className = "content-container d-flex flex-wrap justify-content-center content-margin">
             
             <div className = "profile-container m-3">
+
                 
                 <div className = "row align-items-center m-0 ">
                     <div className = "col-9 text-start fs-1">

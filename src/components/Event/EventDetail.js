@@ -95,7 +95,7 @@ const EventDetail = ({auth: { isAuthenticated, user }}) => {
       <div className="event-detail-container ">
         <div className="left-section">
           {isAuthenticated && (
-            user.email === eventData.organizer_id ? (
+            (user.email === eventData.organizer_id) || (user.isAdministrator) ? (
               <div>
                 <Link to={`/EventHive/events/edit/${eventId}`}>
                   <button className="btn btn-pink me-2 btn-small">Edit</button>
