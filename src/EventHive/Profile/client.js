@@ -1,5 +1,7 @@
 import axios from "axios";
-const PROFILE_URL = "http://localhost:4000/api/profile";
+export const BASE_API = process.env.REACT_APP_API_BASE;
+export const PROFILE_URL = `${BASE_API}/api/profile`;
+
 
 export const updateProfile = async (profile) => {
     const response = await axios

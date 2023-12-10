@@ -1,5 +1,6 @@
 import axios from "axios";
-const EVENTS_URL = "http://localhost:4000/api/events";
+export const BASE_API = process.env.REACT_APP_API_BASE;
+export const EVENTS_URL = `${BASE_API}/api/events`;
 
 export const findEvent = async (eventId) => {
   const response = await axios
