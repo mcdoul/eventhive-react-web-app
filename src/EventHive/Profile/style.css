@@ -8,7 +8,7 @@
     padding: 20px;
 }
 .invisible-profile{
-    display: none ;
+    display: none !important;
 }
 .content-container{
     position: fixed;

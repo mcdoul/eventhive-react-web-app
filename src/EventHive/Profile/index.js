@@ -112,7 +112,7 @@ function Profile ({ auth: { isAuthenticated, user }}) {
                         {profile.name}
                     </div>
                     <div className = "col-3 text-start fs-4">
-                    <button className={`btn btn-primary border-width-2 float-end ${isfollowing ? "invisible-profile" : publicProfile}`} onClick = {handleFollow}>Follow</button>
+                    <button className={`btn btn-pink border-width-2 float-end ${isfollowing ? "invisible-profile" : publicProfile}`} onClick = {handleFollow}>Follow</button>
                         <button className={`btn btn-outline-black border-width-2 float-end ${isfollowing ?  publicProfile: "invisible-profile"}`} onClick = {handleUnFollow}>UnFollow</button>
 
                         </div>

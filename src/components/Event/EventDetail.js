@@ -92,14 +92,22 @@ const EventDetail = ({auth: { isAuthenticated, user }}) => {
   
 
   useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const eventData = await client.findEvent(eventId);
+        if (eventData) {
+          setIsRegistered(eventData?.attendance_id?.includes(user?.email));
+          dispatch(setEvent(eventData));
+        }
+      } catch (error) {
+        console.error("Failed to fetch event:", error);
+      }
+    };
+
     if (eventId) {
       fetchEvent();
     }
-  }, [eventId]);
-
-  if (!eventData) {
-    return <div>Loading event details...</div>;
-  }
+  }, [eventId, dispatch, user?.email]);
 
 
   return (
